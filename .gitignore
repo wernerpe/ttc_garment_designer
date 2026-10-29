@@ -1,0 +1,6 @@
+# Private design pack: the club's real artwork and starting layout (see js/designs/samples.js)
+js/designs/local/
+
+# OS / editor clutter
+.DS_Store
+*.swp

@@ -1,0 +1,60 @@
+{
+ "source": "Blender Studio Human Base Meshes v1.4.1, 'Body Male - Realistic' by Dan Ulrich (CC0)",
+ "units": "cm, y up, +z forward",
+ "measures": {
+  "height": 182.99999999999997,
+  "chestHeight": 128.5,
+  "chest": 98.99999999999999,
+  "waist": 81.76575838378484,
+  "hips": 99.82729716013024,
+  "girthScale": 0.9450255977821522,
+  "shoulderTop": 153.43702697753906
+ },
+ "mesh": {
+  "vertices": 43434,
+  "triangles": 86856,
+  "indexType": "uint16",
+  "positionMin": [
+   -56.328831893635524,
+   0.0,
+   -13.279559420936943
+  ],
+  "positionSpan": [
+   112.71368553887392,
+   182.99999999999997,
+   29.78707492963013
+  ]
+ },
+ "sdf": {
+  "min": [
+   -38.0,
+   60.0,
+   -24.0
+  ],
+  "step": 1.0,
+  "size": [
+   77,
+   109,
+   51
+  ],
+  "scale": 0.01
+ },
+ "blobs": {
+  "positions": [
+   0,
+   260604
+  ],
+  "indices": [
+   260604,
+   521136
+  ],
+  "sdf": [
+   781740,
+   856086
+  ],
+  "sdfDress": [
+   1637828,
+   856086
+  ]
+ }
+}

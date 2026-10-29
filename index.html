@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TTC Singlet Lab</title>
+  <meta name="description" content="Place heat-transfer artwork on a Miler Base Running Singlet pattern and see it on a 3D runner.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 30'%3E%3Cpath d='M8 22c0-9 7-16 16-16s16 7 16 16H8z' fill='%232d5b48'/%3E%3Ccircle cx='43' cy='16' r='4' fill='%232d5b48'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/app.css">
+  <script type="importmap">
+    { "imports": {
+        "three": "./vendor/three/three.module.min.js",
+        "three/addons/": "./vendor/three/addons/"
+    } }
+  </script>
+</head>
+<body>
+  <header class="bar">
+    <div class="brand">
+      <svg class="brand-mark" viewBox="0 0 48 30" aria-hidden="true"><path d="M8 22c0-9 7-16 16-16s16 7 16 16H8z"/><circle cx="43" cy="16" r="4"/><path d="M37 19l5-3M12 22l-3 6M20 22l-1 6M30 22l1 6M36 22l3 6M8 20L2 22" stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none"/></svg>
+      <h1>Tortoise Track Club <span>singlet lab</span></h1>
+    </div>
+    <div class="garment" id="garment-controls">
+      <label class="field">
+        <span>Shirt</span>
+        <select id="style"><option value="miler-base-singlet">Miler Base Running Singlet</option></select>
+      </label>
+      <label class="field">
+        <span>Size</span>
+        <select id="size"></select>
+      </label>
+      <div class="field">
+        <span id="fabric-label">Fabric</span>
+        <div class="fabric-swatches" id="fabric" role="radiogroup" aria-labelledby="fabric-label"></div>
+      </div>
+    </div>
+    <div class="actions">
+      <button id="undo" title="Undo (Ctrl+Z)">Undo</button>
+      <button id="redo" title="Redo (Ctrl+Shift+Z)">Redo</button>
+      <button id="open">Open</button>
+      <button id="save">Save</button>
+      <button id="export" class="primary">Export</button>
+    </div>
+  </header>
+
+  <main class="workspace">
+    <section class="studio" aria-label="3D preview">
+      <div id="viewer" class="viewer"></div>
+      <p class="studio-status" id="status" role="status">Loading</p>
+      <div class="view-buttons" role="group" aria-label="Camera">
+        <button data-view="front">Front</button>
+        <button data-view="left">Side</button>
+        <button data-view="back">Back</button>
+        <button data-view="three">¾</button>
+        <button id="turntable" aria-pressed="false">Turntable</button>
+        <button id="shot" title="Download this view as a PNG">Snapshot</button>
+      </div>
+    </section>
+
+    <section class="mat" aria-label="Pattern pieces">
+      <div id="mat" class="mat-surface">
+        <div class="sel-tools" id="sel-tools" role="toolbar" aria-label="Selected print" hidden></div>
+        <div class="mat-options" role="group" aria-label="Guides">
+          <label><input type="checkbox" data-overlay="safe"> Safe zone</label>
+          <label><input type="checkbox" data-overlay="logo"> Miler logo</label>
+          <label><input type="checkbox" data-overlay="grid"> Grid</label>
+          <button id="fit" class="quiet">Fit</button>
+        </div>
+      </div>
+      <div class="mat-tools">
+        <div class="tray" id="tray" role="toolbar" aria-label="Add artwork"></div>
+        <input id="upload" type="file" multiple accept=".svg,.png,.jpg,.jpeg,.webp,image/svg+xml,image/png,image/jpeg,image/webp" hidden>
+      </div>
+    </section>
+
+    <aside class="inspector" id="inspector" aria-label="Artwork"></aside>
+  </main>
+
+  <dialog id="export-dialog" class="sheet">
+    <form method="dialog">
+      <h2>Export</h2>
+      <div class="export-list">
+        <button type="button" data-export="sheet"><strong>Placement sheet</strong><span>Printable page with every print's size and where it goes, measured from the HPS and centre line.</span></button>
+        <button type="button" data-export="cut"><strong>Cut files (SVG, mirrored)</strong><span>One file per vinyl colour at 1:1 scale in millimetres, flipped for heat-transfer vinyl.</span></button>
+        <button type="button" data-export="panels"><strong>Pattern pieces with art (SVG)</strong><span>Both pieces at 1:1, unmirrored, for checking a print-out against the real shirt.</span></button>
+        <button type="button" data-export="png"><strong>Print-ready PNGs, 300 dpi</strong><span>Transparent PNG per design for DTF or screen-print orders.</span></button>
+      </div>
+      <div class="sheet-actions"><button value="cancel">Close</button></div>
+    </form>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" hidden></div>
+  <input id="open-file" type="file" accept=".json,application/json" hidden>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
